@@ -1,3 +1,4 @@
+from flask import render_template
 from app import app
 
 # routes allow the app to access a specific URI which in turn returns something (function, method, etc)
@@ -7,16 +8,6 @@ from app import app
 
 # defining the /index route with the following method 
 def index():
+    #define user name as carlos
     user = {'username':'Carlos'}
-    return '''
-    <html>
-        <head>
-            <title>
-                Home Page - Carlos's Microblog Bitches!
-            </title>
-        </head>
-        <body>
-            <h1>Hello, ''' + user['username'] + '''!</h1>
-        </body>
-    </html>
-    '''
+    return render_template ('index.html', title = 'Home', user=user)
