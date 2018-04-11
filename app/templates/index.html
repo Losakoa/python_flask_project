@@ -1,18 +1,11 @@
 
-<!--  this is my render HTML template so it can be resued.  title and username will be passed through from the routes.py-->
-<html>
-    <head>
-	{% if title %}
-        <title>{{ title }} - Microblog</title>
-        {% else %}
-        <title>Welcome to Microblog!</title>
-        {% endif %}
-    </head>
-    <body>
-	<!--For loop showing how you can itterate over a list in the routes.py -->
-       	<h1>Hi, {{ user.username }}!</h1>
-        {% for post in posts %}
-        <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-        {% endfor %}
-    </body>
-</html>
+<!--index.html inherits the structure from base.html-->
+{% extends "base.html" %}
+
+<!--This block content will show up and replace the BLOCKarea which located in the base.html we imported to index.thml-->
+{% block content %}
+    <h1>Hi, {{ user.username }}!</h1>
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+{% endblock %}
