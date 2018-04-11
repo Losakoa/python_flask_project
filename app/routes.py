@@ -4,6 +4,7 @@ from app import app
 # routes allow the app to access a specific URI which in turn returns something (function, method, etc)
 @app.route('/')
 @app.route('/index')
+@app.route('/testing')
 
 
 # defining the /index route with the following method 
@@ -22,3 +23,5 @@ def index():
         }
     ]
     return render_template ('index.html', title = 'Home', user = user, posts = posts)
+
+
