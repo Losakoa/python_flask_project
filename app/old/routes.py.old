@@ -10,7 +10,6 @@ from app import app
 def index():
     #define user name as carlos
     user = {'username':'Carlos'}
-    # create a posts dictionary with a list inside including username and body.  This info is passed along within the index.html template via a forloop (body only)
     posts = [
         {
             'author': {'username':'Bill'},
