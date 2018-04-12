@@ -1,6 +1,9 @@
 from flask import render_template
 from app import app
 from app.forms import LoginForm
+from flask import render_template, flash, redirect
+
+
 
 # routes allow the app to access a specific URI which in turn returns something (function, method, etc)
 @app.route('/')
@@ -22,7 +25,19 @@ def index():
     ]
     return render_template ('index.html', title = 'Home', user = user, posts = posts)
 
-@app.route('/login')
+
+
+# login routing protocol and methods 
+# The first new thing in this version is the methods argument in the route decorator. 
+# This tells Flask that this view function accepts GET and POST requests, overriding the default, which is to accept only GET requests
+@app.route('/login', methods = ['GET','POST'])
+
 def login():
     form = LoginForm()
+    # flash text and pass 
+    if form.validate_on_submit(): # does proccessing work | gathers data, runs the validators
+        # flash function use way to show message
+        flash('Login requested for user {}, remember_me={}'.format( 
+            form.username.data, form.remember_me.data))
+        return redirect('/index')
     return render_template('/login.html', Title='Sign In', form = form)
