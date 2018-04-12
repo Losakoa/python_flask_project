@@ -1,12 +1,10 @@
 from flask import render_template
 from app import app
+from app.forms import LoginForm
 
 # routes allow the app to access a specific URI which in turn returns something (function, method, etc)
 @app.route('/')
 @app.route('/index')
-@app.route('/testing')
-
-
 # defining the /index route with the following method 
 def index():
     #define user name as carlos
@@ -24,4 +22,7 @@ def index():
     ]
     return render_template ('index.html', title = 'Home', user = user, posts = posts)
 
-
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('/login.html', Title='Sign In', form = form)
